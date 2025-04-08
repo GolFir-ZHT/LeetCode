@@ -1,4 +1,3 @@
-# LeetCode题目实现
+# LeetCode刷题记录
 
-使用C++语言解决LeetCode题目
-仅是作为练习
+自用，主要用于记录LeetCode刷题过程和常用的代码模板
