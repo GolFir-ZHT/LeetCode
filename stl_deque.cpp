@@ -46,7 +46,8 @@ int main(){
     }
     cout << endl;
 
-    // 使用基于范围的for循环
+    // 使用基于范围的for循环，range-based for statement，
+    // 用:分隔出两段，区别于原先的用;分隔出三段的形式
     for(const auto& val : dq){
         cout << val << ' ';
     }

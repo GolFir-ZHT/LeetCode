@@ -15,13 +15,16 @@
 #include<queue>
 using namespace std;
 
-// 自定义比较函数常用方法
+// 自定义比较函数常用方法，除了用于优先队列的比较函数外，以下
+// 三种方法还有一个应用场景，就是排序函数sort()的比较准则，这是比较重要的点
 // 方法一：全局函数，传入函数指针用decltype转换
 bool cmp1(const int &u, const int &v){
     return u < v; // 大根堆
 }
 
 // 方法三：strcut重载()运算符
+// 在侯捷老师关于STL的视频中提到了这种结构体，
+// 实质是像函数的东西，即functors（仿函数）
 struct cmp3
 {
     bool operator()(const int &u, const int &v){
