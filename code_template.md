@@ -129,3 +129,106 @@ int main(){
 **ASCII（American Standard Code for Information Interchange，美国信息互换标准代码）**：ASCII 编码于 1967 年第一次发布，最后一次更新是在 1986 年，迄今为止共收录了 128 个字符，包含了基本的拉丁字母（英文字母）、阿拉伯数字（1234567890）、标点符号（,.!等）、特殊符号（@#$%^&等）以及一些具有控制功能的字符（往往不会显示出来）， 刷题过程中可以用 int[128] 来处理常用字符的判断；
 
 注意：各个数据类型占多少字节数是由编译器决定的
+
+## 5.算法常用知识总结
+
+```cpp {.line-numbers}
+#include <cctype> // 包含 std::tolower 函数
+#include <iostream>
+using namespace std;
+
+// 判断字母是否相同（忽略大小写）
+// tolower() 函数将字母转换为小写形式
+char a, b;
+if(tolower(a) == tolower(b)) {}
+
+// 计算各位数的乘积：实质是分解各个数位上的数字
+// 这里采用的顺序是从低位到高位
+int num, product = 1;
+while(num > 0){
+    int digit = num % 10;
+    product *= digit; // 求和的话，product->sum，sum += digit;
+    num /= 10;
+}
+
+// 判断完全平方数
+int root = sqrt(num);
+if(root * root == num) {}
+
+// 输入未知个数的整数
+int x;
+while(scanf("%d", &x) == 1) {}
+
+// 求n,m的方格中有多少矩形
+// 这里并不理解？
+// 直接套用排列组合公式也是一种解法：n*(n+1)*m*(m+1)/4
+int n, m;
+cin >> n >> m;
+int sqrs = 0;
+int recs = 0;
+for(int i = 0; i < n; ++i){
+    for(int j = 0; j < m; ++j){
+        if(i == j) sqrs += (n - i) * (m - j);
+        else recs += (n - i) * (m - j); 
+    }
+}
+
+// 计算网格中 (x1, y1) 到 (x2, y2) 之间的距离
+// 这里的dist应该是距离的平方
+int dist = ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+
+// 输入未知字符个数的字符串
+char c;
+string s;
+while(cin >> c){
+    s.push_back(c);
+}
+
+// 字符串加减
+int ans, t;
+while(cin >> t) ans += t;
+
+// 在n个数中，找出最长连续个数
+vector<int> a(n);
+int max = -200; // 初值取一个非常小的数
+for(int i = 1; i < n; ++i){
+    if(a[i] == a[i - 1] - 1) ++ans;
+    else ans = 0;
+    if(ans > max) max = ans;
+}
+
+// 求0-n中2出现的次数，2可以出现在各个数位上
+for(int i = 0; i <= n; ++i){
+    int tmp = i;
+    while(tmp > 0){
+        if(tmp % 10 == 2) ++ans;
+        tmp /= 10;
+    }
+}
+
+// 传染病：一个人每轮传染x人，问传染n轮后，一共传染了多少人
+int ans = 1;
+for(int i = 0; i < n; ++i){
+    ans = ans + ans * x;
+}
+
+// 判断数组中元素有无重复
+map<int, int> count;
+bool isDuplicate = false;
+for(int i = 0; i < n; ++i){
+    count[a[i]]++;
+    if(count[a[i]] > 1){
+        isDuplicate = true;
+        break;
+    }
+}
+
+if(!has) {} // 没有重复的处理
+
+// 栈逐个元素出栈的正确写法
+stack<int> stk;
+while(!stk.empty()){
+    cout << stk.top() << endl; // 输出栈顶元素
+    stk.pop(); // 出栈，必须加上，否则会陷入死循环
+}
+```
